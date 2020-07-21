@@ -1,0 +1,73 @@
+<html>
+	<head>
+	    <title>Registration Page</title>
+            <style>
+                html, body {
+                    display: flex;
+                    height: 100%;
+                    width: 100%;
+                    font-family: -apple-system, BlinkMacSystemFont;
+                }
+                h1 {
+                   text-align: center;
+                }
+                .form {
+                    margin: 20px auto;
+                }
+                input {
+                    display: block;
+                    margin-bottom: 20px;
+                    width: 300px;
+                    height: 30px;
+                    font-size: 14px;
+                
+                }
+            </style>
+        </head>
+        <body>
+            <div  class="form">
+                <h1>Registration Page</h1>
+                <form>
+                    <input  type="text"  name="name"  id="name"  placeholder="Name">
+                    <input  type="text"  name="email"  id="email"  placeholder="E-Mail">
+                    <input  type="password"  name="pwd"  id="pwd"  placeholder="Password">
+                    <input  type="password"  name="pwd-repeat"  id="pwd-repeat"  placeholder="ConfirmPassword">
+                    <input  type="number"  name="phone"  id="phone"  placeholder="PhoneNumber">
+                    <input  type="number"  name="dob"  id="dob"  placeholder="DateOfBirth(ddmmyyyy)">
+                    <input  type="button"  value="Register"  onclick="validation()">
+                </form>
+                <span id="output" style="color: red;"></span>
+            </div>
+            <script>
+                function  validation(){
+                    var out=document.getElementById('output');
+                    var name=document.getElementById('name').value;
+                    var email=document.getElementById('email').value;
+                    var pwd=document.getElementById('pwd').value;
+                    var conpwd=document.getElementById("pwd-repeat").value;
+                    var ph=document.getElementById('phone').value;
+                    var db=document.getElementById('dob').value;
+
+                    var nameValid=name.match(/^[A-Za-z]+$/);
+                    var emailValid=email.match(/^[\w\.-]+@[\w\.]+[A-Za-z ]{2,3}$/);
+                    var pwdValid=pwd.match(/^.{6,}$/);
+                    var phValid=ph.match(/^\d{10}$/);
+                    var dbValid=db.match(/^(((0[1-9]|[12][0-9]|30)[-/]?(0[13-9]|1[012])|31[-/]?(0[13578]|1[02])|(0[1-9]|1[0-9]|2[0-8])[-/]?02)[-/]?[0-9]{4}|29[-/]?02[-/]?([0-9]{2}(([2468][048]|[02468][48])|[13579][26])|([13579][26]|[02468][048]|0[0-9]|1[0-6])00))$/);
+
+                    if(!nameValid) {
+                        output.innerHTML='Invalid Name';
+                    } else if(!emailValid) {
+                        output.innerHTML='E-Mail is not valid';
+                    } else if(!pwdValid||pwd!=conpwd) {
+                        output.innerHTML='Password should be atleast 6 characters long';
+                    } else if(!phValid) {
+                        output.innerHTML='Invalid Phonenumber';
+                    } else if(!dbValid) {
+                        output.innerHTML='Fill according to format' ;
+                    } else {
+                        output.innerHTML='Welcome,'+name;
+                    }
+                }
+            </script>
+        </body>
+</html>
